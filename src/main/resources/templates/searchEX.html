@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grup 크롤링 페이지</title>
+</head>
+<body>
+<h1>검색어를 입력하세요</h1>
+<form method="POST" action="/jsoupService">
+    <label for="searchKeyword">검색어:</label>
+    <input type="text" id="searchKeyword" name="searchKeyword" required>
+    <br><br>
+    <input type="submit" value="검색">
+    //'/search'는 해당 스프링부트에서 처리할 컨트롤러 경로, name은 해당 필드의 이름 설정(검색어)
+</form>
+</body>
+</html>
