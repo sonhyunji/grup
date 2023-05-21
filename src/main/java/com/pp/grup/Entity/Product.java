@@ -8,7 +8,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
+
     @Column(name = "storeTitle")
     private String storeTitle;
 
@@ -21,24 +21,25 @@ public class Product {
     @Column(name = "imgUrl")
     private String imgUrl;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "searchId")
-    private Search search;
+    @Column(name = "storeLink")
+    private String storeLink;
 
+    @Column(name = "searchName")
+    private String searchName;
 
-    public void setStoreTitle(String storeTitle) {
-        this.storeTitle = storeTitle;
+    public String getImgUrl() {
+        return imgUrl;
     }
+
+    public String getStoreLink() {
+        return storeLink;
+    }
+
     public String getStoreTitle() {
         return storeTitle;
     }
 
-    public void setStoreName(String storeName) { this.storeName = storeName; }
-    public String getStoreName() { return storeName; }
-
-    public void setPrice(String price) { this.price = price; }
-    public String getPrice() { return price; }
-
-    public void setImgUrl(String imgUrl) { this.imgUrl = imgUrl; }
-    public String getImgUrl() { return imgUrl; }
+    public String getPrice() {
+        return price;
+    }
 }

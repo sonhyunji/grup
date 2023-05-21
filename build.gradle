@@ -29,6 +29,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.jsoup:jsoup:1.14.3'
     implementation 'javax.servlet:javax.servlet-api:4.0.1'
+    implementation 'mysql:mysql-connector-java:8.0.26'
 }
 
 tasks.named('test') {

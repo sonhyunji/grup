@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>크롤링 페이지 결과</title>
+</head>
+<body>
+<h1>검색 결과</h1>
+<table>
+    <!-- 엔티티 리스트를 순회하며 테이블에 데이터 출력 -->
+    <tr th:each="entity : ${entities}">
+        <td>
+        <a th:href="${entity.storeLink}">
+            <img th:src="${entity.imgUrl}" th:alt="${entity.storeLink}">
+        </a>
+        </td>
+        <td th:text="${entity.storeTitle}"></td>
+        <td th:text="${entity.price}"></td>
+    </tr>
+</table>
+</body>
+</html>
