@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:width="http://www.w3.org/1999/xhtml" xmlns:height="http://www.w3.org/1999/xhtml">
 <head>
     <title>크롤링 페이지 결과</title>
 </head>
@@ -10,7 +10,7 @@
     <tr th:each="entity : ${entities}">
         <td>
         <a th:href="${entity.storeLink}">
-            <img th:src="${entity.imgUrl}" th:alt="${entity.storeLink}">
+            <img th:src="${entity.imgUrl}" th:alt="${entity.storeLink}" style="width: 200px; height: 200px;">
         </a>
         </td>
         <td th:text="${entity.storeTitle}"></td>

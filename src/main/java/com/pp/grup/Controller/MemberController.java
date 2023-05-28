@@ -78,13 +78,14 @@ public class MemberController {
     @GetMapping("/PlantsPlanet/delete/{id}")
     public String deleteById(@PathVariable Integer id){
         memberService.deleteById(id);
-        return "redirect:/PlantsPlanet/";
+        return "redirect:/";
     }
 
     //로그아웃, 세션에서 지운다
-    @GetMapping("/PlantsPlanet/logout")
+    @PostMapping("/PlantsPlanet/logout")
     public String logout(HttpSession session){
         session.invalidate();
         return "index";
     }
+
 }

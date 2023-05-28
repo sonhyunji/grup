@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grup 마이페이지</title>
+</head>
+<body>
+<h1>Grup 마이페이지</h1>
+
+<h2>회원 정보</h2>
+<p><strong>이메일: </strong><span th:text="${updateMember.memberEmail}"></span></p>
+<p><strong>이름: </strong><span th:text="${updateMember.memberName}"></span></p>
+<p><strong>생년월일: </strong><span th:text="${updateMember.memberBirth}"></span></p>
+<br>
+<a href="/PlantsPlanet/update">내 정보 수정하기</a>
+<a>내가 쓴 게시물</a>
+<a th:href="@{/PlantsPlanet/delete/{id}(id=${updateMember.id})}">회원 탈퇴</a>
+</body>
+</html>
