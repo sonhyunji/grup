@@ -37,6 +37,7 @@ public class MemberController {
         if (loginResult!=null){
             //login success
             session.setAttribute("loginEmail", loginResult.getMemberEmail());
+            session.setAttribute("loginName", loginResult.getMemberName());
             //세션에 로그인 정보를 담는다
             return "main";
         } else {
@@ -82,7 +83,7 @@ public class MemberController {
     }
 
     //로그아웃, 세션에서 지운다
-    @PostMapping("/PlantsPlanet/logout")
+    @GetMapping("/PlantsPlanet/logout")
     public String logout(HttpSession session){
         session.invalidate();
         return "index";

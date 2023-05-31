@@ -26,6 +26,8 @@ public class MemberEntity {
     private String memberBirth;
     @Column(name = "userPhone")
     private String memberNum;
+    @Column(name = "profilePic")
+    private String memberPic;
 
     //처음에 회원가입할 땐 id가 자동으로 부여되는데
     public static MemberEntity toMemberEntity(MemberDTO memberDTO){
@@ -35,6 +37,7 @@ public class MemberEntity {
         memberEntity.setMemberName(memberDTO.getMemberName());
         memberEntity.setMemberBirth(memberDTO.getMemberBirth());
         memberEntity.setMemberNum(memberDTO.getMemberNum());
+        memberEntity.setMemberPic(memberDTO.getMemberPic());
         return memberEntity;
     }
 
@@ -47,6 +50,7 @@ public class MemberEntity {
         memberEntity.setMemberName(memberDTO.getMemberName());
         memberEntity.setMemberBirth(memberDTO.getMemberBirth());
         memberEntity.setMemberNum(memberDTO.getMemberNum());
+        memberEntity.setMemberPic(memberDTO.getMemberPic());
         return memberEntity;
     }
 }

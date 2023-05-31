@@ -2,6 +2,7 @@ package com.pp.grup.Controller;
 
 import com.pp.grup.Entity.Board;
 import com.pp.grup.Service.BoardService;
+import com.pp.grup.Service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,18 +15,30 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class BoardController {
     @Autowired
     private BoardService boardService;
+    private MemberService memberService;
 
     @GetMapping("/board/write")
-    public String boardWriteForm() {
+    public String boardWriteForm(HttpSession session) {
+        String myEmail= (String) session.getAttribute("loginEmail");
+        if (myEmail == null) {
+            return "redirect:/PlantsPlanet/login"; // 로그인 페이지 URL로 리다이렉트
+        }
         return "boardwrite";
     }
 
     @PostMapping("/board/writedo")
-    public String boardWritePro(Board board, Model model, MultipartFile file) throws Exception {
+    public String boardWritePro(Board board, Model model, MultipartFile file, HttpSession session) throws Exception {
+        String memberName = (String) session.getAttribute("loginName");
+        model.addAttribute("memberName", memberName);
+
+        board.setMemberName(memberName); // board 객체에 memberName 설정
+
         boardService.write(board, file);
 
         model.addAttribute("message", "글 작성이 완료되었습니다.");
@@ -33,6 +46,7 @@ public class BoardController {
 
         return "message";
     }
+
 
     @GetMapping("/board/list")
     public String boardList(Model model,

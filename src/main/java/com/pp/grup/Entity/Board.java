@@ -2,10 +2,7 @@ package com.pp.grup.Entity;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -17,4 +14,10 @@ public class Board {
     private String content;
     private String filename;
     private String filepath;
+    @Column(name = "writer")
+    private String memberName;
+
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
+    }
 }

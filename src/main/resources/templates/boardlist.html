@@ -18,14 +18,15 @@
         <tr>
             <th>글 번호</th>
             <th>제목</th>
+            <th>작성자</th>
         </tr>
         </thead>
-        <hr>
         <tbody>
         <tr>
         <tr th:each="board : ${list}">
             <td th:text="${board.id}">게시글 번호</td>
             <td><a th:text="${board.title}" th:href="@{/board/view(id=${board.id})}">게시글 제목</a></td>
+            <td th:text="${board.memberName}">작성자</td>
         </tr>
         </tr>
         </tbody>

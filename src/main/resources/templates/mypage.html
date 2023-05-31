@@ -13,7 +13,7 @@
 <p><strong>생년월일: </strong><span th:text="${updateMember.memberBirth}"></span></p>
 <br>
 <a href="/PlantsPlanet/update">내 정보 수정하기</a>
-<a>내가 쓴 게시물</a>
+<a href="/myboard">내가 쓴 게시물</a>
 <a th:href="@{/PlantsPlanet/delete/{id}(id=${updateMember.id})}">회원 탈퇴</a>
 </body>
 </html>

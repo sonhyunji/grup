@@ -1,0 +1,23 @@
+<!-- myboardlist.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>내가 쓴 게시물</title>
+</head>
+<body>
+<h1>내가 쓴 게시물</h1>
+
+<table>
+    <tr>
+        <th>제목</th>
+        <th>작성자</th>
+    </tr>
+    <tr th:each="board : ${myboard}">
+        <td th:text="${board.title}"></td>
+        <td th:text="${board.memberName}"></td>
+    </tr>
+</table>
+</body>
+</html>

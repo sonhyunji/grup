@@ -16,6 +16,7 @@ public class MemberDTO {
     private String memberName;
     private String memberBirth;
     private String memberNum;
+    private String memberPic;
 
     public static MemberDTO toMemberDTO(MemberEntity memberEntity){
         MemberDTO memberDTO=new MemberDTO();
@@ -25,6 +26,7 @@ public class MemberDTO {
         memberDTO.setMemberName(memberEntity.getMemberName());
         memberDTO.setMemberBirth(memberEntity.getMemberBirth());
         memberDTO.setMemberNum(memberEntity.getMemberNum());
+        memberDTO.setMemberPic(memberEntity.getMemberPic());
         return memberDTO;
     }
 
