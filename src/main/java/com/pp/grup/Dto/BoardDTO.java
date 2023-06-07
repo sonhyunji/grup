@@ -3,6 +3,8 @@ package com.pp.grup.Dto;
 import com.pp.grup.Entity.Board;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -15,6 +17,7 @@ public class BoardDTO {
     private String filename;
     private String filepath;
     private String memberName;
+    private LocalDateTime boardDate;
 
     public static BoardDTO toBoardDTO(Board board){
         BoardDTO boardDTO = new BoardDTO();
@@ -24,6 +27,7 @@ public class BoardDTO {
         boardDTO.setFilename(board.getFilename());
         boardDTO.setFilepath(board.getFilepath());
         boardDTO.setMemberName(board.getMemberName());
+        boardDTO.setBoardDate(board.getBoardDate());
         return boardDTO;
     }
 }

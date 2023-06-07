@@ -15,7 +15,7 @@
         <th>작성자</th>
     </tr>
     <tr th:each="board : ${myboard}">
-        <td th:text="${board.title}"></td>
+        <td><a th:text="${board.title}" th:href="@{/board/view(id=${board.id})}">게시글 제목</a></td>
         <td th:text="${board.memberName}"></td>
     </tr>
 </table>

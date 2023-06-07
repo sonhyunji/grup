@@ -15,12 +15,28 @@
 <div class="layout">
     <h1 th:text="${board.title}">제목</h1>
     <p th:text="${board.memberName}">작성자</p>
+    <p th:text="${board.boardDate}">작성날짜</p>
     <hr>
     <p th:text="${board.content}">내용</p>
     <hr>
     <a th:href="@{${board.filepath}}">다운받기</a>
     <a th:href="@{/board/delete(id=${board.id})}">삭제</a>
     <a th:href="@{/board/modify/{id}(id=${board.id})}">수정</a>
+
+    <br>
+    <!-- 댓글 입력 폼 -->
+    <form action="/comments" method="post">
+        <input type="hidden" name="postId" th:value="${board.id}">
+        <input type="text" name="content" placeholder="댓글 내용 입력">
+        <button type="submit">댓글 작성</button>
+    </form>
+
+    <!-- 댓글 목록
+    <div th:each="comment : ${comments}">
+        <div th:text="${comment.commentWriter}"></div>
+        <div th:text="${comment.commentDate}"></div>
+        <div th:text="${comment.content}"></div>
+    </div> -->
 </div>
 </body>
 </html>
