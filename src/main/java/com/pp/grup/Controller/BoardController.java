@@ -104,12 +104,13 @@ public class BoardController {
     }
 
     @PostMapping("/board/update/{id}")
-    public String boardUpdate(@PathVariable("id") Integer id, Board board, MultipartFile file) throws Exception{
+    public String boardUpdate(@PathVariable("id") Integer id, @RequestParam("title") String title,
+                              @RequestParam("content") String content, Board board, MultipartFile file) throws Exception {
         Board boardTemp = boardService.boardview(id);
-        boardTemp.setTitle(board.getTitle());
-        boardTemp.setContent(board.getContent());
+        boardTemp.setTitle(title);
+        boardTemp.setContent(content);
 
-        boardService.write(boardTemp, file);
+        boardService.modify(boardTemp, file);
 
         return "redirect:/board/list";
     }

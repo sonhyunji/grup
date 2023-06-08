@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -32,6 +34,27 @@ public class BoardService {
         }
 
         board.setBoardDate(LocalDateTime.now());
+        boardRepository.save(board);
+    }
+
+    public void modify(Board board, @RequestParam(required = false) MultipartFile file) throws Exception {
+        // 파일이 존재하는 경우
+        if (file != null && !file.isEmpty()) {
+            String projectPath = System.getProperty("user.dir") + "/src/main/resources/static/files";
+            UUID uuid = UUID.randomUUID();
+            String fileName = uuid + "_" + file.getOriginalFilename();
+            File saveFile = new File(projectPath, fileName);
+
+            // 파일 저장
+            try {
+                file.transferTo(saveFile);
+                board.setFilename(fileName);
+                board.setFilepath("/files/" + fileName);
+            } catch (IOException e) {
+                throw new Exception("파일 업로드에 실패하였습니다.");
+            }
+        }
+
         boardRepository.save(board);
     }
 
