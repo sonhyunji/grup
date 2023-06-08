@@ -13,11 +13,9 @@ import javax.persistence.*;
 public class MemberEntity {
 
     @Id // pk
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // auto_increment
-    private Integer id;
-
     @Column(unique = true, name = "userEmail") //unique 제약조건 추가
     private String memberEmail;
+
     @Column(name = "userPassword")
     private String memberPassword;
     @Column(unique = true, name = "userName") // unique
@@ -44,7 +42,6 @@ public class MemberEntity {
     //수정할 땐 이미 id가 있으니까 그걸 가져오는게 필요함
     public static MemberEntity toUpdateMemberEntity(MemberDTO memberDTO) {
         MemberEntity memberEntity = new MemberEntity();
-        memberEntity.setId(memberDTO.getId());
         memberEntity.setMemberEmail(memberDTO.getMemberEmail());
         memberEntity.setMemberPassword(memberDTO.getMemberPassword());
         memberEntity.setMemberName(memberDTO.getMemberName());
@@ -53,4 +50,6 @@ public class MemberEntity {
         memberEntity.setMemberPic(memberDTO.getMemberPic());
         return memberEntity;
     }
+
+
 }

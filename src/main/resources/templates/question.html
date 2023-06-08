@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>question</title>
+  <style>
+    .layout {
+      width: 500px;
+      margin: 0 auto;
+      margin-top: 40px;
+    }
+    p {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+  <form action="/grup/question" method="post">
+    <input type="hidden" th:value="${updateMember.memberEmail}" name="userEmail"><br>
+    <p>온도</p>
+    온도 초기값: <input type="radio" name="answerTemperature" value="5"> 5도
+    <input type="radio" name="answerTemperature" value="15"> 15도
+    <input type="radio" name="answerTemperature" value="25"> 25도 <br>
+    <p>광량</p>
+    광량 초기값: <input type="radio" name="answerLight" value="4"> 양지
+    <input type="radio" name="answerLight" value="3"> 반양지
+    <input type="radio" name="answerLight" value="2"> 반음지
+    <input type="radio" name="answerLight" value="1"> 음지 <br>
+    <p>습도</p>
+    습도 초기값: <input type="radio" name="answerWater" value="3"> 높다
+    <input type="radio" name="answerWater" value="2"> 보통
+    <input type="radio" name="answerWater" value="1"> 낮다 <br>
+    <p>난이도</p>
+    난이도 초기값: <input type="radio" name="answerLevel" value="3"> 상
+    <input type="radio" name="answerLevel" value="2"> 중
+    <input type="radio" name="answerLevel" value="1"> 하 <br>
+
+    <input type="submit" value="제출">
+  </form>
+</div>
+</body>
+</html>

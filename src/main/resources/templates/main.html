@@ -3,13 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <title>main</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+
+    .layout {
+      width: 500px;
+      margin: 0 auto;
+      margin-top: 40px;
+      background-color: #ffffff;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    p {
+      margin: 0;
+    }
+
+    a {
+      display: inline-block;
+      margin-right: 10px;
+      color: #0000ff;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-session 값 확인: <p th:text="${session.loginEmail}"></p>
-<!--세션에 담겨있는 파라미터 값 사용-->
-<!--컨트롤러에 "loginEmail", loginResult.getMemberEmail() 이거-->
-<a href="/PlantsPlanet/logout">로그아웃</a>
-<a href="/mypage">마이페이지</a>
-<a href="/board/list">게시판</a>
+<div class="layout">
+  session 값 확인: <p th:text="${session.loginEmail}"></p>
+  <!--세션에 담겨있는 파라미터 값 사용-->
+  <!--컨트롤러에 "loginEmail", loginResult.getMemberEmail() 이거-->
+  <a href="/PlantsPlanet/logout">로그아웃</a>
+  <a href="/mypage">마이페이지</a>
+  <a href="/board/list">게시판</a>
+  <a href="/grup/question">식물 추천</a>
+</div>
 </body>
 </html>

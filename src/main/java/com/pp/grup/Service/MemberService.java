@@ -5,6 +5,7 @@ import com.pp.grup.Entity.MemberEntity;
 import com.pp.grup.Repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class MemberService {
     private final MemberRepository memberRepository;
     public void save(MemberDTO memberDTO){
@@ -59,8 +61,8 @@ public class MemberService {
 
     }
 
-    public MemberDTO findById(Integer id) {
-        Optional<MemberEntity> optionalMemberEntity = memberRepository.findById(id);
+    public MemberDTO findByMemberEmail(String memberEmail) {
+        Optional<MemberEntity> optionalMemberEntity = memberRepository.findByMemberEmail(memberEmail);
         if (optionalMemberEntity.isPresent()) {
             return MemberDTO.toMemberDTO(optionalMemberEntity.get());
             //optional 객체를 get으로 한 번 까고 변환을 하든 뭘 하든
@@ -83,9 +85,7 @@ public class MemberService {
         //업데이트된 id 가져와야됨(toUpdate)
     }
 
-    public void deleteById(Integer id) {
-        memberRepository.deleteById(id);
-    }
+    public void deleteByMemberEmail(String memberEmail) { memberRepository.deleteByMemberEmail(memberEmail);}
 
     //회원가입 중복 확인
     public String emailCheck(String memberEmail) {

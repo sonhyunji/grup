@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>게시물 수정</title>
+  <meta charset="UTF-8">
+  <title>게시물 수정</title>
 </head>
 <style>
-  .layout{
+  .layout {
     width: 500px;
     margin: 0 auto;
     margin-top: 40px;
@@ -13,10 +13,10 @@
 </style>
 <body>
 <div class="layout">
-  <form th:action="@{/board/update/{id}(id = ${board.id})}" method="post">
+  <form th:action="@{/board/update/{id}(id=${board.id})}" method="post">
     <div class="mb-3">
-      <label for="exampleFormControllInput1" class="form-label">제목</label>
-      <input type="text" name="title" id="exampleFormControllInput1" th:value="${board.title}">
+      <label for="exampleFormControlInput1" class="form-label">제목</label>
+      <input type="text" name="title" id="exampleFormControlInput1" th:value="${board.title}">
     </div>
     <br>
     <div class="mb-3">

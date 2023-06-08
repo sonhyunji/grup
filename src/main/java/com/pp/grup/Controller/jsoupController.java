@@ -36,7 +36,7 @@ public class jsoupController {
     public String getEntities(@RequestParam("searchName") String searchName, Model model) {
         List<Product> entities = jsoupService.getProductsBySearchName(UriUtils.decode(searchName, StandardCharsets.UTF_8));
         model.addAttribute("entities", entities);
-        return "result";
+        return "jsoupresult";
     }
 
     @PostMapping("/deleteEntity")

@@ -7,7 +7,7 @@
 </head>
 <body>
 <form action="/PlantsPlanet/update" method="post">
-    <input type="hidden" th:value="${updateMember.id}" name="id"><br>
+    <input type="hidden" th:value="${updateMember.memberEmail}" name="memberEmail"><br>
     <!--  사진: <input type="file" th:value="${updateMember.memberPic}" accept="image/*" name="mamberPic"> <br> -->
     이메일: <input type="text" th:value="${updateMember.memberEmail}" name="memberEmail"> <br>
     비밀번호: <input type="password" th:value="${updateMember.memberPassword}" name="memberPassword" readonly> <br>

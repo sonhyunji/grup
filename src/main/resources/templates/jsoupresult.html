@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:width="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>내가 쓴 게시물</title>
+    <title>크롤링 페이지 결과</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -44,20 +44,26 @@
             color: #0000ff;
             text-decoration: none;
         }
+
+        img {
+            max-width: 200px;
+            max-height: 200px;
+        }
     </style>
 </head>
 <body>
 <div class="layout">
-    <h1>내가 쓴 게시물</h1>
-
+    <h1>검색 결과</h1>
     <table>
-        <tr>
-            <th>제목</th>
-            <th>작성자</th>
-        </tr>
-        <tr th:each="board : ${myboard}">
-            <td><a th:text="${board.title}" th:href="@{/board/view(id=${board.id})}">게시글 제목</a></td>
-            <td th:text="${board.memberName}"></td>
+        <!-- 엔티티 리스트를 순회하며 테이블에 데이터 출력 -->
+        <tr th:each="entity : ${entities}">
+            <td>
+                <a th:href="${entity.storeLink}">
+                    <img th:src="${entity.imgUrl}" th:alt="${entity.storeLink}">
+                </a>
+            </td>
+            <td th:text="${entity.storeTitle}"></td>
+            <td th:text="${entity.price}"></td>
         </tr>
     </table>
 </div>

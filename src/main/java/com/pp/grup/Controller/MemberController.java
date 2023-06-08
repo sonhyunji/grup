@@ -4,6 +4,7 @@ import com.pp.grup.Dto.MemberDTO;
 import com.pp.grup.Service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 @RequiredArgsConstructor
+@Transactional
 public class MemberController {
     //생성자 주입
     private final MemberService memberService;
@@ -76,9 +78,9 @@ public class MemberController {
     }
 
     //삭제
-    @GetMapping("/PlantsPlanet/delete/{id}")
-    public String deleteById(@PathVariable Integer id){
-        memberService.deleteById(id);
+    @GetMapping("/PlantsPlanet/delete/{memberEmail}")
+    public String deleteByMemberEmail(@PathVariable("memberEmail") String memberEmail) {
+        memberService.deleteByMemberEmail(memberEmail);
         return "redirect:/";
     }
 

@@ -3,14 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <title>식집사 게시판</title>
-</head>
     <style>
-        .layout{
-            width: 500px;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .layout {
+            width: 600px;
             margin: 0 auto;
             margin-top: 40px;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #dddddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333333;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #dddddd;
+            margin: 20px 0;
+        }
+
+        form {
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+            border: 1px solid #dddddd;
+            border-radius: 4px;
+        }
+
+        button[type="submit"] {
+            padding: 5px 10px;
+            background-color: #555555;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        a.write-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #555555;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        a.write-link:hover {
+            background-color: #333333;
         }
     </style>
+</head>
 <body>
 <div class="layout">
     <table>
@@ -23,27 +96,25 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
         <tr th:each="board : ${list}">
             <td th:text="${board.id}">게시글 번호</td>
             <td><a th:text="${board.title}" th:href="@{/board/view(id=${board.id})}">게시글 제목</a></td>
             <td th:text="${board.memberName}">작성자</td>
             <td th:text="${board.boardDate}">작성날짜</td>
         </tr>
-        </tr>
         </tbody>
     </table>
     <hr>
-        <th:block th:each="page : ${#numbers.sequence(startPage, endPage)}">
-        <a th:if="${page != nowPage}" th:href="@{/board/list(page = ${page - 1}, searchKeyword = ${param.searchKeyword})}" th:text="${page}"></a>
-        <strong  th:if="${page == nowPage}" th:text="${page}" style="color : red"></strong>
-        </th:block>
-    <form th:action="@{/board/list}" method="get" >
+    <div th:each="page : ${#numbers.sequence(startPage, endPage)}">
+        <a th:if="${page != nowPage}" th:href="@{/board/list(page=${page - 1}, searchKeyword=${param.searchKeyword})}" th:text="${page}"></a>
+        <strong th:if="${page == nowPage}" th:text="${page}" style="color: red"></strong>
+    </div>
+    <form th:action="@{/board/list}" method="get">
         <input type="text" name="searchKeyword">
         <button type="submit">검색</button>
     </form>
     <br>
-    <a href="/board/write">게시글 작성하기</a>
+    <a class="write-link" href="/board/write">게시글 작성하기</a>
 </div>
 </body>
 </html>

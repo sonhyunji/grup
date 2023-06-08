@@ -1,21 +1,44 @@
 <!DOCTYPE html>
-<html xmlns:width="http://www.w3.org/1999/xhtml" xmlns:height="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
-    <title>크롤링 페이지 결과</title>
+    <meta charset="UTF-8">
+    <title>result</title>
+    <style>
+        .layout {
+            width: 500px;
+            margin: 0 auto;
+            margin-top: 40px;
+        }
+
+        h2 {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-<h1>검색 결과</h1>
-<table>
-    <!-- 엔티티 리스트를 순회하며 테이블에 데이터 출력 -->
-    <tr th:each="entity : ${entities}">
-        <td>
-        <a th:href="${entity.storeLink}">
-            <img th:src="${entity.imgUrl}" th:alt="${entity.storeLink}" style="width: 200px; height: 200px;">
-        </a>
-        </td>
-        <td th:text="${entity.storeTitle}"></td>
-        <td th:text="${entity.price}"></td>
-    </tr>
-</table>
+<div class="layout">
+    <form action="/grup/result" method="get">
+        answerId: <span th:text="${userAnswerPlants.answerId}"></span><br>
+        temperature: <span th:text="${userAnswerPlants.answerTemperature}"></span> <br>
+        Light: <span th:text="${userAnswerPlants.answerLight}"></span> <br>
+        water: <span th:text="${userAnswerPlants.answerWater}"></span> <br>
+        level: <span th:text="${userAnswerPlants.answerLevel}"></span> <br>
+        <br>
+        <div th:if="${result0}">
+            <h2>Result 1</h2>
+            <p th:text="${result0.plantsId}"></p>
+        </div>
+        <div th:if="${result1}">
+            <h2>Result 2</h2>
+            <p th:text="${result1.plantsId}"></p>
+        </div>
+        <div th:if="${result2}">
+            <h2>Result 3</h2>
+            <p th:text="${result2.plantsId}"></p>
+        </div>
+        <br>
+        <a href="/grup/question">질문지로</a>
+    </form>
+</div>
 </body>
 </html>

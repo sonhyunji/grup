@@ -10,7 +10,6 @@ import lombok.*;
 @ToString
 //save에서 받는거 이름이 똑같으면 알아서 스프링에서 객체로 관리해줌
 public class MemberDTO {
-    private Integer id;
     private String memberEmail;
     private String memberPassword;
     private String memberName;
@@ -20,7 +19,6 @@ public class MemberDTO {
 
     public static MemberDTO toMemberDTO(MemberEntity memberEntity){
         MemberDTO memberDTO=new MemberDTO();
-        memberDTO.setId(memberEntity.getId());
         memberDTO.setMemberEmail(memberEntity.getMemberEmail());
         memberDTO.setMemberPassword(memberEntity.getMemberPassword());
         memberDTO.setMemberName(memberEntity.getMemberName());
