@@ -6,16 +6,53 @@
   <!-- jQuery CDN -->
   <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
   <style>
-    input[type="text"],
-    input[type="password"] {
-      width: 300px;
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    .header {
+      background-color: #2196F3;
+      padding: 20px;
+      color: #fff;
+    }
+
+    .header a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .header a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      margin-top: 40px;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .container label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .container input[type="text"],
+    .container input[type="password"] {
+      width: 100%;
       padding: 8px;
       border: 1px solid #dddddd;
       border-radius: 4px;
       margin-bottom: 10px;
     }
 
-    input[type="submit"] {
+    .container input[type="submit"] {
       background-color: #4CAF50;
       color: #ffffff;
       padding: 10px 20px;
@@ -24,35 +61,50 @@
       cursor: pointer;
     }
 
-    input[type="submit"]:hover {
+    .container input[type="submit"]:hover {
       background-color: #45a049;
+    }
+
+    .container p {
+      margin: 10px 0;
+      color: #ff0000;
+      font-size: 14px;
     }
   </style>
 </head>
 <body>
-<!-- action속성: form에 작성한 데이터를 어디로 보낼지 지정 -->
-<form action="/PlantsPlanet/save" method="post">
-  <!-- name속성: 서버로 전송할 때 변수이름의 역할 -->
-  이메일: <input type="text" id="memberEmail" onkeyup="emailCheck()" name="memberEmail"> <br>
-  <!-- 이메일 체크 -->
-  <p id="emailCheck-result"></p>
-  비밀번호: <input type="password" name="memberPassword"> <br>
-  <!-- 몇 자리 이상, 영어 숫자 등 조건 추가 가능할까요 -->
-  닉네임: <input type="text" id="memberName" onkeyup="nameCheck()" name="memberName"> <br>
-  <p id="nameCheck-result"></p>
-  <!-- 이하 추가 입력사항 -->
-  생년월일(yymmdd): <input type="text" name="memberBirth"><br>
-  휴대폰 번호: <input type="text" name="memberNum"> <br>
-  <input type="submit" value="회원가입">
-</form>
+<div class="header">
+  <a href="/">Grup</a>
+</div>
+
+<div class="container">
+  <form action="/PlantsPlanet/save" method="post">
+    <label for="memberEmail">이메일:</label>
+    <input type="text" id="memberEmail" onkeyup="emailCheck()" name="memberEmail">
+    <p id="emailCheck-result"></p>
+
+    <label for="memberPassword">비밀번호:</label>
+    <input type="password" name="memberPassword">
+
+    <label for="memberName">닉네임:</label>
+    <input type="text" id="memberName" onkeyup="nameCheck()" name="memberName">
+    <p id="nameCheck-result"></p>
+
+    <label for="memberBirth">생년월일(yymmdd):</label>
+    <input type="text" name="memberBirth">
+
+    <label for="memberNum">휴대폰 번호:</label>
+    <input type="text" name="memberNum">
+
+    <input type="submit" value="회원가입">
+  </form>
+</div>
 
 <script>
-  // 디비에서 이메일 중복 확인
   const emailCheck = () => {
     const email = document.getElementById("memberEmail").value;
     const emailCheckResult = document.getElementById("emailCheck-result");
     $.ajax({
-      // 요청방식: post, url: "email-check", 데이터: 이메일
       type: "post",
       url: "/PlantsPlanet/email-check",
       data: {"memberEmail": email},
@@ -66,14 +118,12 @@
       error: function (err) {
       }
     });
-    <!-- 이미 사용 중인 이메일이면 회원가입 안되게 막아주세요 -->
   };
 
   const nameCheck = () => {
     const name = document.getElementById("memberName").value;
     const nameCheckResult = document.getElementById("nameCheck-result");
     $.ajax({
-      // 요청방식: post, url: "name-check", 데이터: memberName
       type: "post",
       url: "/PlantsPlanet/name-check",
       data: {"memberName": name},
@@ -87,7 +137,6 @@
       error: function (err) {
       }
     });
-    <!-- 이미 사용 중인 닉네임이면 회원가입 안되게 막아주세요 -->
   };
 </script>
 </body>

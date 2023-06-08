@@ -34,5 +34,6 @@ public class CommentController {
 
         return "redirect:/board/view?id=" + postId;
     }
+
 }
 

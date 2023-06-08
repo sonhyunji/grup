@@ -4,25 +4,83 @@
     <meta charset="UTF-8">
     <title>result</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+        .header {
+            background-color: #2196F3;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .header a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .header a:hover {
+            text-decoration: underline;
+        }
+
         .layout {
-            width: 500px;
+            max-width: 500px;
             margin: 0 auto;
             margin-top: 40px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         h2 {
             margin-top: 20px;
         }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #2196F3;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: #0c7cd5;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
+<div class="header">
+    <a href="/main">Grup</a>
+</div>
 <div class="layout">
     <form action="/grup/result" method="get">
-        answerId: <span th:text="${userAnswerPlants.answerId}"></span><br>
-        temperature: <span th:text="${userAnswerPlants.answerTemperature}"></span> <br>
-        Light: <span th:text="${userAnswerPlants.answerLight}"></span> <br>
-        water: <span th:text="${userAnswerPlants.answerWater}"></span> <br>
-        level: <span th:text="${userAnswerPlants.answerLevel}"></span> <br>
+        <p>answerId: <span th:text="${userAnswerPlants.answerId}"></span></p>
+        <p>temperature: <span th:text="${userAnswerPlants.answerTemperature}"></span></p>
+        <p>Light: <span th:text="${userAnswerPlants.answerLight}"></span></p>
+        <p>water: <span th:text="${userAnswerPlants.answerWater}"></span></p>
+        <p>level: <span th:text="${userAnswerPlants.answerLevel}"></span></p>
         <br>
         <div th:if="${result0}">
             <h2>Result 1</h2>
@@ -36,8 +94,9 @@
             <h2>Result 3</h2>
             <p th:text="${result2.plantsId}"></p>
         </div>
-        <br>
-        <a href="/grup/question">질문지로</a>
+        <div class="button-container">
+            <button type="submit" class="button"><a href="/grup/question">질문지로</a></button>
+        </div>
     </form>
 </div>
 </body>

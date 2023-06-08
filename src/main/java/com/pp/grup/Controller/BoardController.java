@@ -1,9 +1,9 @@
 package com.pp.grup.Controller;
 
 import com.pp.grup.Entity.Board;
+import com.pp.grup.Entity.Comment;
 import com.pp.grup.Service.BoardService;
-import com.pp.grup.Service.MemberService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.pp.grup.Service.CommentService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -13,15 +13,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class BoardController {
-    @Autowired
-    private BoardService boardService;
-    private MemberService memberService;
+    private final BoardService boardService;
+    private final CommentService commentService;
+
+    public BoardController(BoardService boardService, CommentService commentService) {
+        this.boardService = boardService;
+        this.commentService = commentService;
+    }
 
     @GetMapping("/board/write")
     public String boardWriteForm(HttpSession session) {
@@ -75,8 +81,13 @@ public class BoardController {
     }
 
     @GetMapping("/board/view")
-    public String boardview(Model model, Integer id){
-        model.addAttribute("board", boardService.boardview(id));
+    public String boardview(Model model, @RequestParam Integer id){
+        Board board = boardService.boardview(id);
+        List<Comment> comments = commentService.getCommentsByPostId(id);
+
+        model.addAttribute("board", board);
+        model.addAttribute("comments", comments);
+
         return "boardview";
     }
 

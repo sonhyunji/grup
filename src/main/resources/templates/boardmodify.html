@@ -10,8 +10,25 @@
     margin: 0 auto;
     margin-top: 40px;
   }
+  .header {
+    background-color: #2196F3;
+    padding: 20px;
+    color: #fff;
+  }
+
+  .header a {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .header a:hover {
+    text-decoration: underline;
+  }
 </style>
 <body>
+<div class="header">
+  <a href="/">Grup</a>
+</div>
 <div class="layout">
   <form th:action="@{/board/update/{id}(id=${board.id})}" method="post">
     <div class="mb-3">

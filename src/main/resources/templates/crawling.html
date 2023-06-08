@@ -48,9 +48,26 @@
             border-radius: 4px;
             cursor: pointer;
         }
+        .header {
+            background-color: #2196F3;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .header a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .header a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
+<div class="header">
+    <a href="/">Grup</a>
+</div>
 <div class="layout">
     <h1>검색어를 입력하세요</h1>
     <form method="POST" action="/searchSubmit">

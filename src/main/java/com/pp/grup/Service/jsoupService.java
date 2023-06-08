@@ -41,9 +41,6 @@ public class jsoupService {
                 String storeName = "꽃씨몰";
 
                 saveProductData(storeTitle, storeName, price, storeLink, imgUrl, searchName);
-
-                System.out.println("{storeName : " + storeName + "} {storeTitle : " + storeTitle +
-                        "} {price : " + price + "} {imgUrl : " + imgUrl + "} {saleLink : " + storeLink + "}");
             }
 
             System.out.println("------------------------------------------------------------------------------------------------");
@@ -69,10 +66,6 @@ public class jsoupService {
                 String storeName = "엑스플랜트";
 
                 saveProductData(storeTitle, storeName, price, storeLink, imgUrl, searchName);
-
-                System.out.println("{storeName : " + storeName + "} {storeTitle : " + storeTitle +
-                        "} {price : " + price + "} {imgUrl : " + imgUrl + "} {saleLink : "
-                        + storeLink + "}");
             }
 
             System.out.println("------------------------------------------------------------------------------------------------");
@@ -92,10 +85,6 @@ public class jsoupService {
                 String storeName = product.select("div.seller > a").text();
 
                 saveProductData(storeTitle, storeName, price, storeLink, imgUrl, searchName);
-
-                System.out.println("{storeName : " + storeName + "} {storeTitle : " + storeTitle +
-                        "} {price : " + price + "} {imgUrl : " + imgUrl + "} {saleLink : "
-                        + storeLink + "}");
             }
         } else {
             String flowerPlusUrl = "https://www.flowerseed-mall.com/";
@@ -113,9 +102,6 @@ public class jsoupService {
                 String storeName = "꽃씨몰";
 
                 saveProductData(storeTitle, storeName, price, storeLink, imgUrl, searchName);
-
-                System.out.println("{storeName : " + storeName + "} {storeTitle : " + storeTitle +
-                        "} {price : " + price + "} {imgUrl : " + imgUrl + "} {saleLink : " + storeLink + "}");
             }
 
             System.out.println("------------------------------------------------------------------------------------------------");
@@ -141,10 +127,6 @@ public class jsoupService {
                 String storeName = "엑스플랜트";
 
                 saveProductData(storeTitle, storeName, price, storeLink, imgUrl, searchName);
-
-                System.out.println("{storeName : " + storeName + "} {storeTitle : " + storeTitle +
-                        "} {price : " + price + "} {imgUrl : " + imgUrl + "} {saleLink : "
-                        + storeLink + "}");
             }
 
             System.out.println("------------------------------------------------------------------------------------------------");
@@ -164,10 +146,6 @@ public class jsoupService {
                 String storeName = product.select("div.seller > a").text();
 
                 saveProductData(storeTitle, storeName, price, storeLink, imgUrl, searchName);
-
-                System.out.println("{storeName : " + storeName + "} {storeTitle : " + storeTitle +
-                        "} {price : " + price + "} {imgUrl : " + imgUrl + "} {saleLink : "
-                        + storeLink + "}");
             }
         }
     }
