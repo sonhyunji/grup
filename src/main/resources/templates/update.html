@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>update</title>
+</head>
+<body>
+<div class="header">
+    <a href="/main">Grup</a>
+    <a href="/grup/startquestion">Question</a>
+    <a href="/crawling/main">Crawling</a>
+    <a href="/board/list">Board</a>
+    <a href="/PlantsPlanet/login">login</a>
+</div>
+<form action="/PlantsPlanet/update" method="post">
+<!--    <input type="hidden" th:value="${updateMember.memberEmail}" name="memberEmail"><br>-->
+    <!--  사진: <input type="file" th:value="${updateMember.memberPic}" accept="image/*" name="mamberPic"> <br> -->
+    이메일: <input type="text" th:value="${updateMember.memberEmail}" name="memberEmail"> <br>
+    비밀번호: <input type="password" th:value="${updateMember.memberPassword}" name="memberPassword" readonly> <br>
+    이름: <input type="text" th:value="${updateMember.memberName}" name="memberName"> <br>
+    생년월일(yymmdd): <input type="text" th:value="${updateMember.memberBirth}" name="memberBirth"> <br>
+    전화번호: <input type="text" th:value="${updateMember.memberNum}" name="memberNum"> <br>
+    <input type="submit" value="정보수정">
+</form>
+</body>
+</html>

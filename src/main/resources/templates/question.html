@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>question</title>
+  <style>
+    .layout {
+      width: 500px;
+      margin: 0 auto;
+      margin-top: 40px;
+      background-color: #f2f2f2;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    p {
+      font-weight: bold;
+      margin-top: 10px;
+      font-size: 20px;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+    }
+
+    .input-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .input-group input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    .input-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .submit-button {
+      display: block;
+      margin-top: 20px;
+      background-color: #2196F3;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-button:hover {
+      background-color: #0c7cd5;
+    }
+    .header {
+      background-color: #2196F3;
+      padding: 20px;
+      color: #fff;
+    }
+
+    .header a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .header a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<div class="header">
+  <a href="/main">Grup</a>
+  <a href="/grup/startquestion">Question</a>
+  <a href="/crawling/main">Crawling</a>
+  <a href="/board/list">Board</a>
+  <a href="/PlantsPlanet/login">login</a>
+</div>
+<div class="layout">
+  <form action="/grup/question" method="post">
+    <input type="hidden" th:value="${userEmail}" name="userEmail">
+
+    <div class="input-group">
+      <p>온도</p>
+      <label for="temperature1"><input type="radio" id="temperature1" name="answerTemperature" value="5"> 5도</label>
+      <label for="temperature2"><input type="radio" id="temperature2" name="answerTemperature" value="15"> 15도</label>
+      <label for="temperature3"><input type="radio" id="temperature3" name="answerTemperature" value="25"> 25도</label>
+    </div>
+
+    <div class="input-group">
+      <p>광량</p>
+      <label for="light1"><input type="radio" id="light1" name="answerLight" value="4"> 양지</label>
+      <label for="light2"><input type="radio" id="light2" name="answerLight" value="3"> 반양지</label>
+      <label for="light3"><input type="radio" id="light3" name="answerLight" value="2"> 반음지</label>
+      <label for="light4"><input type="radio" id="light4" name="answerLight" value="1"> 음지</label>
+    </div>
+
+    <div class="input-group">
+      <p>습도</p>
+      <label for="water1"><input type="radio" id="water1" name="answerWater" value="3"> 높다</label>
+      <label for="water2"><input type="radio" id="water2" name="answerWater" value="2"> 보통</label>
+      <label for="water3"><input type="radio" id="water3" name="answerWater" value="1"> 낮다</label>
+    </div>
+
+    <div class="input-group">
+      <p>난이도</p>
+      <label for="level1"><input type="radio" id="level1" name="answerLevel" value="3"> 상</label>
+      <label for="level2"><input type="radio" id="level2" name="answerLevel" value="2"> 중</label>
+      <label for="level3"><input type="radio" id="level3" name="answerLevel" value="1"> 하</label>
+    </div>
+
+    <input type="submit" value="제출" class="submit-button">
+  </form>
+</div>
+</body>
+</html>

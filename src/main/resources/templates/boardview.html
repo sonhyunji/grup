@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>식집사 게시판 상세 페이지</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .layout {
+            width: 600px;
+            margin: 0 auto;
+            margin-top: 40px;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #555555;
+            margin-bottom: 10px;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #dddddd;
+            margin: 20px 0;
+        }
+
+        a {
+            display: inline-block;
+            margin-right: 10px;
+            padding: 10px 20px;
+            background-color: #555555;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #333333;
+        }
+
+        form {
+            margin-bottom: 10px;
+        }
+
+        input[type="hidden"],
+        input[type="text"] {
+            padding: 5px;
+            border: 1px solid #dddddd;
+            border-radius: 4px;
+        }
+
+        button[type="submit"] {
+            padding: 5px 10px;
+            background-color: #555555;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .header {
+            background-color: #2196F3;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .header a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .header a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <a href="/main">Grup</a>
+    <a href="/grup/startquestion">Question</a>
+    <a href="/crawling/main">Crawling</a>
+    <a href="/board/list">Board</a>
+    <a href="/PlantsPlanet/login">login</a>
+</div>
+<div class="layout">
+    <h1 th:text="${board.title}">제목</h1>
+    <p th:text="${board.memberName}">작성자</p>
+    <p th:text="${board.boardDate}">작성날짜</p>
+    <p>조회수 : <see th:text="${board.boardView}"/></p>
+    <hr>
+    <p th:text="${board.content}">내용</p>
+    <div th:if="${board.filename != null}">
+        <img style="width:300px" th:src="|/files/${board.filename}|" th:data-src="${board.filename}">
+    </div>
+    <hr>
+    <a th:href="@{/likes/click/{id}(id=${board.id})}">좋아요</a>
+    <a th:href="@{/board/delete/{id}(id=${board.id})}">삭제</a>
+    <a th:href="@{/board/modify/{id}(id=${board.id})}">수정</a>
+    <br>
+    <form action="/comments" method="post">
+        <input type="hidden" name="postId" th:value="${board.id}">
+        <input type="text" name="content" placeholder="댓글 내용 입력">
+        <button type="submit">댓글 작성</button>
+    </form>
+    <!-- 댓글 목록 -->
+    <div th:each="comment : ${comments}">
+        <div th:text="${comment.commentWriter}"></div>
+        <div th:text="${comment.commentDate}"></div>
+        <div th:text="${comment.content}"></div>
+        <form action="/comments/delete/{commentId}" method="post" th:action="@{/comments/delete/{commentId}(commentId=${comment.id})}">
+            <input type="hidden" name="postId" th:value="${board.id}">
+            <input type="hidden" name="_method" value="DELETE">
+            <button type="submit">댓글 삭제</button>
+        </form>
+        <hr>
+    </div>
+</div>
+</body>
+</html>

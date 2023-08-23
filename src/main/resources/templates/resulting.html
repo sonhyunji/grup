@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>resulting</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      text-align: center;
+    }
+
+    .header {
+      background-color: #2196F3;
+      padding: 20px;
+      color: #fff;
+    }
+
+    .header a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .header a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #2196F3;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #0c7cd5;
+    }
+
+    .progress-bar {
+      width: 100%;
+      background-color: #f1f1f1;
+      border-radius: 5px;
+      padding: 3px;
+      margin-top: 20px;
+    }
+
+    .progress-bar-inner {
+      height: 20px;
+      background-color: #2196F3;
+      border-radius: 5px;
+      width: 0;
+      transition: width 0.5s ease-in-out;
+    }
+  </style>
+</head>
+<body>
+<div class="header">
+  <a href="/main">Grup</a>
+  <a href="/grup/startquestion">Question</a>
+  <a href="/crawling/main">Crawling</a>
+  <a href="/board/list">Board</a>
+  <a href="/PlantsPlanet/login">login</a>
+</div>
+<div class="container">
+  <h1>Resulting</h1>
+  <form action="/grup/resulting" method="get">
+    <button type="submit" class="button">진단 시작</button>
+  </form>
+  <div class="progress-bar">
+    <div class="progress-bar-inner"></div>
+  </div>
+  <form action="/grup/resulting" method="post">
+    <button type="submit" class="button">Post Submit Button: result.html</button>
+  </form>
+</div>
+</body>
+</html>

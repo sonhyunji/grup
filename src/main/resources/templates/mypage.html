@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Grup 마이페이지</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333333;
+            padding: 20px 0;
+        }
+
+        h2 {
+            color: #555555;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 5px;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+
+        a {
+            display: inline-block;
+            margin-right: 10px;
+            padding: 10px 20px;
+            background-color: #555555;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        a:hover {
+            background-color: #333333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #2196F3;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .header a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .header a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <a href="/main">Grup</a>
+    <a href="/grup/startquestion">Question</a>
+    <a href="/crawling/main">Crawling</a>
+    <a href="/board/list">Board</a>
+    <a href="/PlantsPlanet/login">login</a>
+</div>
+<div class="container">
+    <h1>Grup 마이페이지</h1>
+
+    <h2>회원 정보</h2>
+    <p><strong>이메일: </strong><span th:text="${updateMember.memberEmail}"></span></p>
+    <p><strong>이름: </strong><span th:text="${updateMember.memberName}"></span></p>
+    <p><strong>생년월일: </strong><span th:text="${updateMember.memberBirth}"></span></p>
+    <br>
+    <a href="/PlantsPlanet/update">내 정보 수정하기</a>
+    <a href="/myboard">내가 쓴 게시물</a>
+    <a th:href="@{/PlantsPlanet/delete/{memberEmail}(memberEmail=${updateMember.memberEmail})}">회원 탈퇴</a>
+</div>
+</body>
+</html>

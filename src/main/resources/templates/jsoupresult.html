@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:width="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>크롤링 페이지 결과</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .layout {
+            width: 800px;
+            margin: 0 auto;
+            margin-top: 40px;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333333;
+            margin-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #dddddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            color: #0000ff;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 200px;
+            max-height: 200px;
+        }
+        .header {
+            background-color: #2196F3;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .header a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .header a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <a href="/main">Grup</a>
+    <a href="/grup/startquestion">Question</a>
+    <a href="/crawling/main">Crawling</a>
+    <a href="/board/list">Board</a>
+    <a href="/PlantsPlanet/login">login</a>
+</div>
+<div class="layout">
+    <h1>검색 결과</h1>
+    <table>
+        <!-- 엔티티 리스트를 순회하며 테이블에 데이터 출력 -->
+        <tr th:each="entity : ${entities}">
+            <td>
+                <a th:href="${entity.storeLink}">
+                    <img th:src="${entity.imgUrl}" th:alt="${entity.storeLink}">
+                </a>
+            </td>
+            <td th:text="${entity.storeTitle}"></td>
+            <td th:text="${entity.price}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
