@@ -88,6 +88,24 @@
 <!--      <button type="submit" class="button">식물 추천</button>-->
 <!--    </form>-->
   </div>
+  <hr>
+  <h3>좋아요 게시물</h3>
+  <ul>
+    <!-- 게시물 목록을 순회하며 표시 -->
+    <li th:each="board : ${topLikedBoards}">
+      <p>Title: <span th:text="${board.title}"></span></p>
+      <p>Like Count: <span th:text="${board.likeCount}"></span></p>
+    </li>
+  </ul>
+
+  <h3>조회수 게시물</h3>
+  <ul>
+    <!-- 게시물 목록을 순회하며 표시 -->
+    <li th:each="board : ${topViewedBoards}">
+      <p>Title: <span th:text="${board.title}"></span></p>
+      <p>View Count: <span th:text="${board.boardView}"></span></p>
+    </li>
+  </ul>
 </div>
 </body>
 </html>

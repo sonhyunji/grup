@@ -4,10 +4,11 @@ import com.pp.grup.Entity.Board;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface BoardRepository extends JpaRepository<Board, Integer> {
@@ -17,4 +18,9 @@ public interface BoardRepository extends JpaRepository<Board, Integer> {
 
     List<Board> findByMemberName(String memberName);
 
+    @Query("SELECT b FROM Board b WHERE b.boardDate >= :startDate ORDER BY b.boardView DESC")
+    List<Board> findTop10ViewedBoardsWithinMonth(LocalDateTime startDate, Pageable pageable);
+
+    @Query("SELECT b FROM Board b WHERE b.boardDate >= :startDate ORDER BY b.likeCount DESC")
+    List<Board> findTop10LikedBoardsWithinMonth(LocalDateTime startDate, Pageable pageable);
 }

@@ -4,13 +4,17 @@ import com.pp.grup.Entity.Board;
 import com.pp.grup.Repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -106,4 +110,19 @@ public class BoardService {
         Optional<Board> boardOptional = boardRepository.findById(id);
         return boardOptional.orElse(null); // orElse(null)를 사용하여 값이 없을 때는 null을 반환하도록 처리
     }
+
+    public List<Board> getTopLikedBoardsWithinMonth() {
+        LocalDate oneMonthAgo = LocalDate.now().minusMonths(1); // 한 달 전 날짜
+        LocalDateTime startDateTime = oneMonthAgo.atStartOfDay(); // LocalDate를 LocalDateTime으로 변환
+        Pageable pageable = PageRequest.of(0, 10, Sort.by(Sort.Direction.DESC, "likeCount"));
+        return boardRepository.findTop10LikedBoardsWithinMonth(startDateTime, pageable);
+    }
+
+    public List<Board> getTopViewedBoardsWithinMonth() {
+        LocalDate oneMonthAgo = LocalDate.now().minusMonths(1); // 한 달 전 날짜
+        LocalDateTime startDateTime = oneMonthAgo.atStartOfDay(); // LocalDate를 LocalDateTime으로 변환
+        Pageable pageable = PageRequest.of(0, 10, Sort.by(Sort.Direction.DESC, "boardView"));
+        return boardRepository.findTop10ViewedBoardsWithinMonth(startDateTime, pageable);
+    }
+
 }
