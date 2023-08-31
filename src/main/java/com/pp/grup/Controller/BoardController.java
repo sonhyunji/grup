@@ -13,6 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -80,13 +83,35 @@ public class BoardController {
     }
 
     @GetMapping("/board/view")
-    public String boardview(Model model, @RequestParam Integer id){
+    public String boardview(Model model, @RequestParam Integer id, HttpServletResponse response, HttpServletRequest request){
 
         Board board = boardService.boardview(id);
         List<Comment> comments = commentService.getCommentsByPostId(id);
 
-        board.setBoardView(board.getBoardView() + 1);
-        boardService.saveBoard(board); // 변경된 조회수를 저장
+        // 쿠키 생성
+        String viewedCookieName = "viewed_" + id;
+        Cookie[] cookies = request.getCookies();
+        boolean hasViewedCookie = false;
+
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals(viewedCookieName)) {
+                    hasViewedCookie = true;
+                    break;
+                }
+            }
+        }
+
+        if (!hasViewedCookie) {
+            // 조회수 증가 로직
+            board.setBoardView(board.getBoardView() + 1);
+            boardService.saveBoard(board); // 변경된 조회수를 저장
+
+            // 쿠키 생성 및 저장
+            Cookie viewedCookie = new Cookie(viewedCookieName, "true");
+            viewedCookie.setMaxAge(24 * 60 * 60); // 쿠키 유효기간 설정 (예: 1일)
+            response.addCookie(viewedCookie);
+        }
 
         model.addAttribute("board", board);
         model.addAttribute("comments", comments);
