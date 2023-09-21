@@ -14,21 +14,23 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.util.List;
 
 
 @Service
 @Transactional
-public class jsoupService {
+public class JsoupService {
 
     public void searchPlant(String searchKeyword) throws IOException {
         String searchName = searchKeyword; //요청받은 검색어
+        String encodedSearchName = URLEncoder.encode(searchName, "UTF-8");
 
         if(checkIfSearchNameExists(searchName) == true) {
             deleteBySearchName(searchName);
-            String flowerPlusUrl = "https://www.flowerseed-mall.com/";
+            String flowerPlusUrl = "https://www.flowerseed-mall.com";
             String flowerUrl = "https://www.flowerseed-mall.com/shop/shopbrand.html?search=";
-            Document flowerDoc = Jsoup.connect(flowerUrl + searchName + "&refer=https:").get();
+            Document flowerDoc = Jsoup.connect(flowerUrl + encodedSearchName + "&refer=https:").get();
             // 원하는 태그 선택
             Elements products = flowerDoc.select("li.item_list.item_list2");
 
@@ -48,7 +50,7 @@ public class jsoupService {
             String xplantPlusUrl = "https://www.xplant.co.kr/";
             String xplantUrl = "https://www.xplant.co.kr/shop/search.php?search_str=";
             String xplantImg = "https://webp2.xplant.co.kr/data/thumb/item/170x160-2/";
-            Document xplantDoc = Jsoup.connect(xplantUrl + searchName).get();
+            Document xplantDoc = Jsoup.connect(xplantUrl + encodedSearchName).get();
             // 원하는 태그 선택
             products = xplantDoc.select("ul.itemTd.modified_to_div");
 
@@ -72,7 +74,7 @@ public class jsoupService {
 
             String simpolUrl = "https://www.simpol.co.kr/front/productsearch.php?s_from=top&s_check=prodname&search=";
             String simpolPlusUrl = "https://www.simpol.co.kr/front/";
-            Document simpolDoc = Jsoup.connect(simpolUrl + searchName).get();
+            Document simpolDoc = Jsoup.connect(simpolUrl + encodedSearchName).get();
             // 원하는 태그 선택
             products = simpolDoc.select("li#lotteTitle0");
 
@@ -87,9 +89,9 @@ public class jsoupService {
                 saveProductData(storeTitle, storeName, price, storeLink, imgUrl, searchName);
             }
         } else {
-            String flowerPlusUrl = "https://www.flowerseed-mall.com/";
+            String flowerPlusUrl = "https://www.flowerseed-mall.com";
             String flowerUrl = "https://www.flowerseed-mall.com/shop/shopbrand.html?search=";
-            Document flowerDoc = Jsoup.connect(flowerUrl + searchName + "&refer=https:").get();
+            Document flowerDoc = Jsoup.connect(flowerUrl + encodedSearchName + "&refer=https:").get();
             // 원하는 태그 선택
             Elements products = flowerDoc.select("li.item_list.item_list2");
 
@@ -109,7 +111,7 @@ public class jsoupService {
             String xplantPlusUrl = "https://www.xplant.co.kr/";
             String xplantUrl = "https://www.xplant.co.kr/shop/search.php?search_str=";
             String xplantImg = "https://webp2.xplant.co.kr/data/thumb/item/170x160-2/";
-            Document xplantDoc = Jsoup.connect(xplantUrl + searchName).get();
+            Document xplantDoc = Jsoup.connect(xplantUrl + encodedSearchName).get();
             // 원하는 태그 선택
             products = xplantDoc.select("ul.itemTd.modified_to_div");
 
@@ -133,7 +135,7 @@ public class jsoupService {
 
             String simpolUrl = "https://www.simpol.co.kr/front/productsearch.php?s_from=top&s_check=prodname&search=";
             String simpolPlusUrl = "https://www.simpol.co.kr/front/";
-            Document simpolDoc = Jsoup.connect(simpolUrl + searchName).get();
+            Document simpolDoc = Jsoup.connect(simpolUrl + encodedSearchName).get();
             // 원하는 태그 선택
             products = simpolDoc.select("li#lotteTitle0");
 
@@ -181,7 +183,7 @@ public class jsoupService {
     private final EntityManager entityManager;
 
     @Autowired
-    public jsoupService(EntityManager entityManager) {
+    public JsoupService(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 

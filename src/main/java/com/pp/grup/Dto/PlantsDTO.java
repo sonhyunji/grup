@@ -3,6 +3,7 @@ package com.pp.grup.Dto;
 import com.pp.grup.Entity.PlantsEntity;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 @Getter // 클래스 내 모든 필드의 getter 메서드 자동생성
@@ -15,11 +16,10 @@ public class PlantsDTO {
     private Long plantsId;
     private String plantsName;
     private String plantsPic;
-    private Integer plantsTemperature;
-    private Integer plantsLight;
-    private Integer plantsWater;
-    private Integer plantsLevel;
-    private Integer plantsFlower;
+    private BigDecimal plantsTemperature;
+    private BigDecimal plantsLight;
+    private BigDecimal plantsWater;
+    private BigDecimal plantsLevel;
     private Integer plantsSelected;
     private String plantsEffect;
     private String plantsNotice;
@@ -34,7 +34,6 @@ public class PlantsDTO {
         plantsDTO.setPlantsLight(plantsEntity.getPlantsLight());
         plantsDTO.setPlantsWater(plantsEntity.getPlantsWater());
         plantsDTO.setPlantsLevel(plantsEntity.getPlantsLevel());
-        plantsDTO.setPlantsFlower(plantsEntity.getPlantsFlower());
         plantsDTO.setPlantsSelected(plantsEntity.getPlantsSelected());
         plantsDTO.setPlantsEffect(plantsEntity.getPlantsEffect());
         plantsDTO.setPlantsNotice(plantsEntity.getPlantsNotice());
@@ -57,5 +56,4 @@ public class PlantsDTO {
         // 필드들이 동일하다면 true를 반환하고, 그렇지 않다면 false를 반환합니다.
         return Objects.equals(this.plantsId, other.plantsId);
     }
-
 }

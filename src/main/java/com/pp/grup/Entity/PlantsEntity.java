@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
 @Setter
@@ -20,15 +21,13 @@ public class PlantsEntity {
     @Column(name = "plantsPic")
     private String plantsPic;
     @Column(name = "plantsTemperature")
-    private Integer plantsTemperature;
+    private BigDecimal plantsTemperature;
     @Column(name = "plantsLight")
-    private Integer plantsLight;
+    private BigDecimal plantsLight;
     @Column(name = "plantsWater")
-    private Integer plantsWater;
+    private BigDecimal plantsWater;
     @Column(name = "plantsLevel")
-    private Integer plantsLevel;
-    @Column(name = "plantsFlower")
-    private Integer plantsFlower;
+    private BigDecimal plantsLevel;
     @Column(name = "plantsSelected")
     private Integer plantsSelected;
     @Column(name = "plantsEffect")
@@ -46,7 +45,6 @@ public class PlantsEntity {
         plantsEntity.setPlantsLight(plantsDTO.getPlantsLight());
         plantsEntity.setPlantsWater(plantsDTO.getPlantsWater());
         plantsEntity.setPlantsLevel(plantsDTO.getPlantsLevel());
-        plantsEntity.setPlantsFlower(plantsDTO.getPlantsFlower());
         plantsEntity.setPlantsSelected(plantsDTO.getPlantsSelected());
         plantsEntity.setPlantsEffect(plantsDTO.getPlantsEffect());
         plantsEntity.setPlantsNotice(plantsDTO.getPlantsNotice());

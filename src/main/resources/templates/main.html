@@ -93,8 +93,8 @@
   <ul>
     <!-- 게시물 목록을 순회하며 표시 -->
     <li th:each="board : ${topLikedBoards}">
-      <p>Title: <span th:text="${board.title}"></span></p>
-      <p>Like Count: <span th:text="${board.likeCount}"></span></p>
+      <p>제목: <span th:text="${board.title}"></span></p>
+      <p>좋아요 수: <span th:text="${board.likeCount}"></span></p>
     </li>
   </ul>
 
@@ -102,8 +102,8 @@
   <ul>
     <!-- 게시물 목록을 순회하며 표시 -->
     <li th:each="board : ${topViewedBoards}">
-      <p>Title: <span th:text="${board.title}"></span></p>
-      <p>View Count: <span th:text="${board.boardView}"></span></p>
+      <p>제목: <span th:text="${board.title}"></span></p>
+      <p>조회수: <span th:text="${board.boardView}"></span></p>
     </li>
   </ul>
 </div>
